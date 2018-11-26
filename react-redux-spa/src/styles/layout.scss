@@ -1,0 +1,49 @@
+@import "_theme.scss";
+
+#root {
+	height: 100%;
+}
+
+.main-header {
+	background: #001529;
+	.header-logo {
+		float: left;
+		width: 150px;
+		height: 30px;
+		background: rgba(255, 255, 255, .2);
+		margin: 15px;
+	}
+	.main-header-left {
+		float: left;
+	}
+	.main-header-right {
+		float: right;
+		margin-right: 20px;
+	}
+	.login-user {
+		color: rgba(2555, 2555, 2555, 0.75);
+		&:hover {
+			color: $theme-color;
+		}
+		i {
+			margin: 0 5px;
+		}
+	}
+	.header-trigger {
+		font-size: 18px;
+		line-height: 64px;
+		padding: 0 24px;
+		cursor: pointer;
+		transition: color .3s;
+	}
+
+	.header-trigger:hover {
+		color: $theme-color;
+	}
+}
+
+.main-content {
+	margin: 30px 50px;
+	background: #fff;
+	padding: 20px;
+}
