@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import '../styles/passport.scss';
 
@@ -6,13 +7,20 @@ import * as _ from '../utils/tool';
 
 import { Button, Input } from 'antd';
 
+@connect(
+	state => ({
+		login: state.login
+	})
+)
 export default class extends Component {
 
-	// // 表单修改
-	// handleChange = (type, e) => this.props.loginStore.setLoginForm(type,  e.target.value);
+	// 表单修改
+	handleChange = (type, e) => {}
+	// this.props.loginStore.setLoginForm(type,  e.target.value);
 
-	// // 提交
-	// handSubmit = () => this.props.loginStore.handSubmitLogin().then(d => {
+	// 提交
+	handSubmit = () => { } 
+	// this.props.loginStore.handSubmitLogin().then(d => {
 	// 	if(d) {
 	// 		this.props.history.replace(_.getQueryString('redirect') || '/')
 	// 		this.props.appStore.updateUser(d);
@@ -21,13 +29,13 @@ export default class extends Component {
 
 	render() {
 
-		let { loginStore } = this.props;
-		let { loginForm, ableSubmit } = loginStore;
+		let { login } = this.props;
+		let { loginForm, ableSubmit } = login;
 		
 		return (
 			<div className="passport-panel">
 				<h3>登录</h3>
-				{/*<Input
+				<Input
 					size="large"
 					value={loginForm.username}
 					onChange={this.handleChange.bind(null, 'username')}
@@ -42,7 +50,7 @@ export default class extends Component {
 					onClick={this.handSubmit}
 					loading={!ableSubmit}
 					type="primary"
-					size="large">登录</Button>*/}
+					size="large">登录</Button>
 			</div>
 		)
 	}

@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import '../styles/home.scss';
 
 import { Button, Input } from 'antd';
+import { increase, decrease } from '../stores/actions/home';
 
+@connect(
+	state => ({ home: state.home }),
+	dispatch => ({
+		handleIncrease: () => dispatch(increase()),
+		handleDecrease: () => dispatch(decrease())
+	})
+)
 export default class extends Component {
-
-	state = {
-		count: 1
-	}
-
-	increment = () => {}
-
-	decrement = () => {}
-
 	render() {
-		let { count } = this.state;
+		let { home, handleIncrease, handleDecrease } = this.props;
+		let { count } = home;
 
 		return (
 			<div>
 				index page
 				<br/>
 				<Input className="home-input" value={count} readOnly />
-				<Button onClick={this.increment}>+</Button>
-				<Button onClick={this.decrement}>-</Button>
+				<Button onClick={handleIncrease}>+</Button>
+				<Button onClick={handleDecrease}>-</Button>
 			</div>
 		)
 	}

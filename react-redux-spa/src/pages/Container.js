@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { logout } from '../stores/actions/app';
+
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { singleLayout } from '../configs/layout';
 
 import '../styles/layout.scss';
 
-const { Header, Footer, Content } = Layout;
-const { SubMenu } = Menu;
+const { Header, Content } = Layout;
 
 @withRouter
-@connect(({ app }) => ({
-    app
-}))
-// @inject('appStore')
-// @observer
+@connect(
+	state => ({ 
+		app: state.app
+	})
+)
 export default class Container extends Component {
 
 	// constructor(props) {
@@ -23,12 +24,10 @@ export default class Container extends Component {
 	// 	this.props.appStore.history = this.props.history;
 	// }
 
-	// toggle = () => this.props.appStore.toggle()
-
 	logout = () => {
-		let { history, location, app } = this.props;
+		let { history, location, dispatch } = this.props;
 		history.push({ pathname: '/login', search: 'redirect='+location.pathname })
-		// appStore.logout()
+		dispatch(logout())
 	}
 
 	handleMenu = ({ key }) => {
@@ -37,7 +36,7 @@ export default class Container extends Component {
 
 	render() {
 		let { children, location, app } = this.props;
-		let { user } = app;
+		let { user = {} } = app;
 
 		console.log(this.props);
 

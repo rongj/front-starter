@@ -13,7 +13,6 @@ export const app = (state = initialState, action) => {
 				...state,
 				user: {}
 			}
-			break;
 		default:
 			return state;
 	}
