@@ -1,0 +1,51 @@
+<div class="form-wrap">
+	<form nz-form nzLayout="inline" (ngSubmit)="submitForm()">
+		<nz-form-item>
+			<nz-form-label>创建时间</nz-form-label>
+			<nz-form-control>
+				<nz-range-picker (ngModelChange)="onChange($event)"></nz-range-picker>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label>邮件标题</nz-form-label>
+			<nz-form-control>
+				<input nz-input placeholder="请输入邮件标题">
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label>任务类型</nz-form-label>
+			<nz-form-control>
+				<nz-select>
+					<nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+					<nz-option [nzLabel]="'hive'" [nzValue]="'hive'"></nz-option>
+					<nz-option [nzLabel]="'mysql'" [nzValue]="'mysql'"></nz-option>
+				</nz-select>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-control>
+				<button nz-button nzType="primary">查询</button>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-control>
+				<button nz-button nzType="primary"><i nz-icon type="plus"></i>新建邮件</button>
+			</nz-form-control>
+		</nz-form-item>
+	</form>
+</div>
+
+<panel-table 
+	[title]="'DC自动邮件列表'"
+	[toolbar]="toolbar"
+	[columns]="columns"
+	[data]="mailList"
+></panel-table>
+<ng-template #toolbar>
+	<nz-radio-group nzButtonStyle="solid" [(ngModel)]="mail_status" [nzSize]="'small'">
+		<label nz-radio-button nzValue="">邮件任务</label>
+		<label nz-radio-button nzValue="2">查询中</label>
+		<label nz-radio-button nzValue="0">发送成功</label>
+		<label nz-radio-button nzValue="1">发送失败</label>
+	</nz-radio-group>
+</ng-template>

@@ -1,0 +1,51 @@
+
+	<!-- {{ toolbar }} -->
+	<!-- <ng-container>{{ ntoolbar }}</ng-container> -->
+
+<!-- 	<ng-container *ngIf="isSuffixString; else suffixTemplate">{{ nzSuffix }}</ng-container>
+   	<ng-template #suffixTemplate> -->
+		<!-- <ng-template [ngTemplateOutlet]="ntoolbar"></ng-template> -->
+	<!-- </ng-template> -->
+
+<div class="table-wrapper">
+	<div class="table-toolbar clearfix">
+		<div class="table-toolbar-title fl">
+			<b>{{title}}</b>
+			<i 
+				nz-icon
+				type="question-circle-o"
+				class="ml10"
+				nz-popover
+				nzTitle="报表说明"
+				[nzContent]="132"
+				nzPlacement="rightTop"
+			></i>
+		</div>
+		<div class="table-toolbar-action fr">
+			<ng-template [ngTemplateOutlet]="toolbar"></ng-template>
+		</div>
+	</div>
+	<nz-table 
+		[nzData]="data"
+		[nzShowQuickJumper]="true"
+		[nzSize]="'small'"
+		[nzPageSize]="10"
+		[nzFrontPagination]="false"
+		[nzHideOnSinglePage]="true">
+		<thead>
+			<tr>
+				<th *ngFor="let col of columns">{{col.title}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let d of data; let i = index">
+				<td *ngFor="let col of columns">
+					<ng-container *ngIf="!col.render; else renderTemplate">{{d[col.dataIndex]}}</ng-container>
+					<ng-template #renderTemplate>
+						<ng-template *render="col.render(d)"></ng-template>
+					</ng-template>
+				</td>
+			</tr>
+		</tbody>
+	</nz-table>
+</div>

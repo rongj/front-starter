@@ -1,0 +1,44 @@
+// Echarts面板样式
+@import 'theme.scss';
+
+.echarts-panel {
+	background-color: #fff;
+	margin: 0;
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 0;
+	.echarts-container {
+		height: 320px;
+		width: 100%;
+	}
+	.echarts-toolbar {
+		padding: 5px 15px;
+		// border-bottom: 1px solid #e8e8e8;
+		.echarts-toolbar-title {
+			line-height: 32px;
+		}
+		.echarts-toolbar-action {
+			font-size: 12px;
+			line-height: 32px;
+			margin-right: 10px;
+		}
+	}
+}
+
+.echarts-legend {
+	padding: 10px 20px 0;
+	button {
+		margin-right: 10px;
+		min-width: 50px;
+		font-size: 12px;
+	}
+	&.echarts-buttons {
+		position: absolute;
+		z-index: 1;
+		padding-top: 0;
+	}
+}
+.menu-item-selected {
+	color: #fff!important;
+	background-color: $theme-color!important;
+}

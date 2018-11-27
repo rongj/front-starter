@@ -1,0 +1,161 @@
+<nz-layout class="main-layout">
+	<nz-sider [nzWidth]="isCollapsed ? 80 : 240" class="main-sider" [ngClass]="isCollapsed ? 'ant-layout-sider-collapsed' : ''">
+		<div class="sider-top">
+			<div class="header-logo"></div>
+		</div>
+		<div class="sider-scroller scrollbar-primary">
+			<ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'" [nzInlineCollapsed]="isCollapsed">
+				<li nz-submenu>
+					<span title>
+						<i nz-icon class="iconfont" type="appstore"></i>
+						<span>东方头条</span>
+					</span>
+					<ul>
+						<li nz-submenu>
+							<span title>
+								<i nz-icon class="iconfont" type="appstore"></i>
+								<span>东方头条赚钱</span>
+							</span>
+							<ul>
+								<li nz-menu-item>任务总览</li>
+							</ul>
+						</li>
+						<li nz-submenu>
+							<span title>
+								<i nz-icon class="iconfont" type="appstore"></i>
+								<span>东方头条H5</span>
+							</span>
+							<ul>
+								<li nz-submenu>
+									<span title>H5实时</span>
+									<ul>
+										<li nz-menu-item>H5实时渠道</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li nz-submenu>
+							<span title>
+								<i nz-icon class="iconfont" type="appstore"></i>
+								<span>东方头条PC</span>
+							</span>
+							<ul>
+								<li nz-submenu>
+									<span title>新闻站</span>
+									<ul>
+										<li nz-menu-item>PC实时渠道</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li nz-submenu [nzOpen]="true">
+					<span title>
+						<i nz-icon class="iconfont" type="appstore"></i>
+						<span>应用中心</span>
+					</span>
+					<ul>
+						<li nz-menu-item [nzSelected]="true" routerLink="/application/auto-mail">
+							<i nz-icon class="iconfont" type="appstore"></i>
+							<span>邮件配置</span>
+						</li>
+						<li nz-menu-item routerLink="/application/dftt-kanban">
+							<i nz-icon class="iconfont" type="appstore"></i>
+							<span>监控看板</span>
+						</li>
+						<li nz-menu-item routerLink="/application/activity-config">
+							<i nz-icon class="iconfont" type="appstore"></i>
+							<span>功能配置</span>
+						</li>
+						<li nz-menu-item routerLink="/application/management">
+							<i nz-icon class="iconfont" type="appstore"></i>
+							<span>监控配置</span>
+						</li>
+					</ul>
+				</li>
+				<li nz-submenu>
+					<span title>
+						<i nz-icon class="iconfont" type="appstore"></i>
+						<span>DC专用</span>
+					</span>
+					<ul>
+						<li nz-submenu>
+							<span title>
+								<i nz-icon class="iconfont" type="appstore"></i>
+								<span>算法团队</span>
+							</span>
+							<ul>
+								<li nz-menu-item>KPI报表</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nz-sider>
+	<nz-layout class="main-layout">
+		<nz-header class="header">
+			<div class="header-left">
+				<div nz-tooltip [nzTitle]="isCollapsed ? '展开导航' : '收起导航'" class="header-icon header-collapse" (click)="handleCollapse()">
+					<i nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+				</div>
+				<nz-breadcrumb class="main-breadcrumb" [nzSeparator]="'>'">
+					<nz-breadcrumb-item>应用中心</nz-breadcrumb-item>
+					<nz-breadcrumb-item>邮件配置</nz-breadcrumb-item>
+				</nz-breadcrumb>
+			</div>
+			<div class="header-right">
+				<ul nz-menu [nzMode]="'horizontal'" class="header-menu" (nzClick)="handleMenuClick()">
+					<li nz-submenu>
+						<span title><i nz-icon type="user"></i> {{username}}</span>
+						<ul>
+							<li nz-menu-item>退出</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nz-header>
+		<div class="main-tabs">
+			<nz-tabset [nzType]="'card'" [nzTabBarGutter]="5" [nzSelectedIndex]="0">
+				<nz-tab [nzTitle]="tabNav1">
+					<ng-template #tabNav1>
+						<div routerLink="/index">
+							首页
+							<i nz-icon type="close" class="ant-tabs-close-x"></i>
+						</div>
+					</ng-template>
+				</nz-tab>
+				<nz-tab [nzTitle]="tabNav2">
+					<ng-template #tabNav2>
+						<div routerLink="/application/management">
+							监控配置
+							<i nz-icon type="close" class="ant-tabs-close-x"></i>
+						</div>
+					</ng-template>
+				</nz-tab>
+				<nz-tab [nzTitle]="tabNav3">
+					<ng-template #tabNav3>
+						<div routerLink="/application/auto-mail">
+							邮件配置
+							<i nz-icon type="close" class="ant-tabs-close-x"></i>
+						</div>
+					</ng-template>
+				</nz-tab>
+				<nz-tab [nzTitle]="tabNav4">
+					<ng-template #tabNav4>
+						<div routerLink="/application/activity-config">
+							功能配置
+							<i nz-icon type="close" class="ant-tabs-close-x"></i>
+						</div>
+					</ng-template>
+				</nz-tab>
+			</nz-tabset>
+		</div>
+		<nz-layout class="main-panel scrollbar">
+			<nz-content class="content-panel">
+				<router-outlet></router-outlet>
+			</nz-content>
+		</nz-layout>
+	</nz-layout>
+</nz-layout>
