@@ -1,0 +1,26 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
+  "rules": {
+    "eofline": false,
+    "semicolon": [true, "always"],
+    // "type-literal-delimiter": false,
+    "member-access": [false],  //类成员必须声明 private public
+    "no-non-null-assertion": [false],  //不允许使用!后缀操作符的非空断言
+    "trailing-comma": [false],
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "no-console": [false]
+  }
+}

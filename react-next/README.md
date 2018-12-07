@@ -1,6 +1,6 @@
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/zeit/next.js/tree/master/examples/with-next-sass)
+[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/zeit/next.js/tree/master/examples/with-ant-design-less)
 
-# Example app with next-sass
+# Ant Design example
 
 ## How to use
 
@@ -9,9 +9,9 @@
 Execute [`create-next-app`](https://github.com/segmentio/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
 
 ```bash
-npx create-next-app --example with-next-sass with-next-sass-app
+npx create-next-app --example with-ant-design-less with-ant-design-app
 # or
-yarn create next-app --example with-next-sass with-next-sass-app
+yarn create next-app --example with-ant-design-less with-ant-design-app
 ```
 
 ### Download manually
@@ -19,8 +19,8 @@ yarn create next-app --example with-next-sass with-next-sass-app
 Download the example:
 
 ```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-next-sass
-cd with-next-sass
+curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-ant-design-less
+cd with-ant-design-less
 ```
 
 Install it and run:
@@ -33,22 +33,12 @@ yarn
 yarn dev
 ```
 
-Run production build with:
+Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download))
 
 ```bash
-npm run build
-npm run start
-# or
-yarn build
-yarn start
+now
 ```
 
 ## The idea behind the example
 
-This example features:
-
-* An app with next-sass
-
-This example uses next-sass without css-modules. The config can be found in `next.config.js`, change `withSass()` to `withSass({cssModules: true})` if you use css-modules. Then in the code, you import the stylesheet as `import style '../styles/style.scss'` and use it like `<div className={style.example}>`.
-
-[Learn more](https://github.com/zeit/next-plugins/tree/master/packages/next-sass)
+This example shows how to use Next.js along with [Ant Design of React](http://ant.design). This is intended to show the integration of this UI toolkit with the Framework.
