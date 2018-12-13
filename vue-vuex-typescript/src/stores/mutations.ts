@@ -24,6 +24,10 @@ const mutations: MutationTree<State> = {
     state.user = data;
   },
 
+  // logout
+  logout(state: State) {
+    state.user = {};
+  }
 };
 
 export default mutations;

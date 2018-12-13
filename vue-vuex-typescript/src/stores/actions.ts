@@ -3,6 +3,9 @@ import { State } from './state';
 import api from '@/services/api';
 import { message } from 'ant-design-vue';
 
+import router from '../router';
+import { getQueryString } from '@/utils/global';
+
 const actions: ActionTree<State, any> = {
   // login
   async handleLogin({ state, commit }, data) {
@@ -17,7 +20,8 @@ const actions: ActionTree<State, any> = {
       message.success('登录成功');
       commit('submit', 'ableSubmit');
       commit('login', res.data);
-      state.router.push('/');
+      const redirectUrl = getQueryString('redirectUrl') || '/';
+      router.replace(redirectUrl);
     }
   },
 

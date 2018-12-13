@@ -22,5 +22,6 @@ export default class extends Vue {
 
   @Action private increament!: () => void;
   @Action private decreament!: () => void;
+  
 }
 </script>

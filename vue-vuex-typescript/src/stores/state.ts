@@ -1,5 +1,3 @@
-import router from '../router';
-
 export interface User {
   id?: number;
   username?: string;
@@ -12,7 +10,6 @@ export interface LoginForm {
 }
 
 export interface State {
-  router?: any;
   user?: User;
   collapsed: boolean;
   count: number;
@@ -21,8 +18,6 @@ export interface State {
 }
 
 const state: State = {
-  router,
-
   user: {},
   collapsed: !!window.localStorage.getItem('collapsed'),
 

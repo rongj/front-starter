@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './stores';
 
 import Login from './views/Login.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
@@ -39,3 +40,17 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if(to.meta.requireAuth && JSON.stringify(store.state.user) === '{}') {
+    router.push({
+      name: 'login',
+      query: {
+        redirectUrl: to.path
+      }
+    });
+  }
+  next();
+});
+
+export default router;

@@ -7,9 +7,16 @@ import store from './stores';
 import '@/styles/common.scss';
 
 import { message } from 'ant-design-vue';
+import Component from 'vue-class-component';
 
 Vue.config.productionTip = false;
 Vue.prototype.$message = message;
+
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate'
+]);
 
 // sync(store, router);
 

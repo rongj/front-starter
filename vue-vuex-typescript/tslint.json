@@ -21,7 +21,7 @@
     "member-access": [false],  //类成员必须声明 private public
     "no-non-null-assertion": [false],  //不允许使用!后缀操作符的非空断言
     "no-empty": false,
-    "no-inferrable-types": [true, "ignore-params", "ignore-pro"], 
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"], 
     "trailing-comma": [false],
     "quotemark": [true, "single", "avoid-escape"],
     "indent": [true, "spaces", 2],

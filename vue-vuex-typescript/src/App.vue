@@ -14,17 +14,13 @@
           theme="dark"
           mode="inline"
           @click="changeMenu"
-          :defaultSelectedKeys="[$route.path]">
+          :selectedKeys="[currentPath]">
           <a-menu-item key="/">
             <a-icon type="user" />
             <span>home</span>
           </a-menu-item>
-          <a-menu-item key="/list">
-            <a-icon type="video-camera" />
-            <span>list</span>
-          </a-menu-item>
           <a-menu-item key="/about">
-            <a-icon type="upload" />
+            <a-icon type="home" />
             <span>about</span>
           </a-menu-item>
         </a-menu>
@@ -44,7 +40,7 @@
                 {{ user.username }} <a-icon type="down" />
               </a>
               <a-menu slot="overlay">
-                <a-menu-item @click="logout">退出</a-menu-item>
+                <a-menu-item @click="handleLogout">退出</a-menu-item>
               </a-menu>
             </a-dropdown>
           </div>
@@ -61,9 +57,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Layout, Dropdown, Menu, Icon } from 'ant-design-vue';
 import { State, Mutation } from 'vuex-class';
+import { Route } from 'vue-router';
 
 Vue.use(Layout);
 Vue.use(Dropdown);
@@ -78,17 +75,34 @@ interface MenuItem {
 
 @Component
 export default class App extends Vue {
+  private currentPath: string = '';
+
   @State private user;
   @State private collapsed!: boolean;
 
-  @Mutation private toggleMenu!: () => void;
+  @Mutation
+  private toggleMenu!: () => void;
 
-  private logout(): void {
-    this.$router.push('/login');
+  @Mutation
+  private logout!: () => void;
+
+  private handleLogout(): void {
+    this.logout();
+    this.$router.push({
+      name: 'login',
+      query: {
+        redirectUrl: this.$route.path
+      }
+    });
   }
 
   private changeMenu({ item, key, keyPath }: MenuItem): void {
     this.$router.push(key);
+  }
+
+  @Watch('$route')
+  private routeChange(val: Route, oldVal: Route): void {
+    this.currentPath = val.path;
   }
 
 }
