@@ -13,18 +13,19 @@
           class="main-menu scrollbar-primary"
           theme="dark"
           mode="inline"
-          :defaultSelectedKeys="['1']">
-          <a-menu-item key="1">
+          @click="changeMenu"
+          :defaultSelectedKeys="[$route.path]">
+          <a-menu-item key="/">
             <a-icon type="user" />
-            <span>nav 1</span>
+            <span>home</span>
           </a-menu-item>
-          <a-menu-item key="2">
+          <a-menu-item key="/list">
             <a-icon type="video-camera" />
-            <span>nav 2</span>
+            <span>list</span>
           </a-menu-item>
-          <a-menu-item key="3">
+          <a-menu-item key="/about">
             <a-icon type="upload" />
-            <span>nav 3</span>
+            <span>about</span>
           </a-menu-item>
         </a-menu>
       </a-layout-sider>
@@ -34,7 +35,7 @@
             <a-icon
               class="header-trigger"
               :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-              @click="()=> collapsed = !collapsed"
+              @click="() => toggleMenu()"
             />
           </div>
           <div class="main-header-right">
@@ -43,7 +44,7 @@
                 {{ user.username }} <a-icon type="down" />
               </a>
               <a-menu slot="overlay">
-                <a-menu-item>退出</a-menu-item>
+                <a-menu-item @click="logout">退出</a-menu-item>
               </a-menu>
             </a-dropdown>
           </div>
@@ -60,20 +61,36 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Model } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { Layout, Dropdown, Menu, Icon } from 'ant-design-vue';
-import { State } from 'vuex-class';
+import { State, Mutation } from 'vuex-class';
 
 Vue.use(Layout);
 Vue.use(Dropdown);
 Vue.use(Menu);
 Vue.use(Icon);
 
+interface MenuItem {
+  item: Vue;
+  key: string;
+  keyPath: string;
+}
+
 @Component
 export default class App extends Vue {
   @State private user;
+  @State private collapsed!: boolean;
 
-  @Model('collapsed', { type: Boolean }) collapsed: boolean = false;
+  @Mutation private toggleMenu!: () => void;
+
+  private logout(): void {
+    this.$router.push('/login');
+  }
+
+  private changeMenu({ item, key, keyPath }: MenuItem): void {
+    this.$router.push(key);
+  }
+
 }
 
 </script>

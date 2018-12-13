@@ -11,11 +11,19 @@
   "rules": {
     "eofline": false,
     "semicolon": [true, "always"],
-    // "type-literal-delimiter": false,
+    "type-literal-delimiter": false,
+    "typedef-whitespace": false, //在类型定义的时候是否允许使用空格
+    "no-trailing-whitespace": false, // 尾部空格检测
+    "one-line": false, // 行内检测
+    "whitespace": false, // 空格的校验
+    "comment-format": [false],  // 注释行中的空格
+    "arrow-parens": false, // 箭头函数定义的参数需要括号
     "member-access": [false],  //类成员必须声明 private public
     "no-non-null-assertion": [false],  //不允许使用!后缀操作符的非空断言
+    "no-empty": false,
+    "no-inferrable-types": [true, "ignore-params", "ignore-pro"], 
     "trailing-comma": [false],
-    "quotemark": [true, "single"],
+    "quotemark": [true, "single", "avoid-escape"],
     "indent": [true, "spaces", 2],
     "interface-name": false,
     "ordered-imports": false,

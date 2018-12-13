@@ -1,21 +1,39 @@
+import router from '../router';
+
 export interface User {
-  id: number;
+  id?: number;
+  username?: string;
+  token?: string;
+}
+
+export interface LoginForm {
   username: string;
-  token: string;
+  password: string;
 }
 
 export interface State {
+  router?: any;
   user?: User;
   collapsed: boolean;
+  count: number;
+  loginForm: LoginForm;
+  ableSubmit: boolean;
 }
 
 const state: State = {
-  user: {
-    id: 1,
-    username: 'admin',
-    token: '12',
+  router,
+
+  user: {},
+  collapsed: !!window.localStorage.getItem('collapsed'),
+
+  count: 0,
+
+  loginForm: {
+    username: '',
+    password: '',
   },
-  collapsed: false
+
+  ableSubmit: true,
 };
 
 export default state;
