@@ -18,23 +18,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+<script>
 import { Button, Input } from 'ant-design-vue';
-import { State, Action } from 'vuex-class';
-import { LoginForm } from '@/stores/state';
 
-@Component({
+export default {
   components: {
-    [Button.name]: Button,
-    [Input.name]: Input
-  }
-})
-export default class extends Vue {
-  @State private loginForm?: LoginForm;
-  @State private ableSubmit!: boolean;
+    AButton: Button,
+    AInput: Input
+  },
+  data() {
+    return {
+      loginForm: {
+        username: '',
+        password: ''
+      },
+      ableSubmit: true,
+    }
+  },
 
-  @Action private handleLogin!: (loginForm: LoginForm) => void;
+  methods: {
+    handleLogin: function() {
+
+    }
+  }
 }
 
 </script>

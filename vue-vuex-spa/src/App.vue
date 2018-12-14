@@ -79,8 +79,6 @@ export default class App extends Vue {
   @global.State user;
   @global.State collapsed;
 
-  @global.State text;
-
   @global.Mutation toggleMenu;
 
   @global.Mutation logout;

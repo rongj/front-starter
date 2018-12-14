@@ -12,6 +12,7 @@
       placeholder="请输入密码"/>
     <a-button 
       type="primary"
+      :loading="!ableSubmit"
       @click="() => handleLogin(loginForm)"
       size="large">登录</a-button>
   </div>

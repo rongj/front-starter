@@ -1,0 +1,95 @@
+@import "_theme.scss";
+
+#root {
+	height: 100%;
+}
+
+.main-wrapper {
+	height: 100%;
+	overflow: hidden;
+}
+
+
+.main-sider {
+	overflow: hidden;
+	.ant-layout-sider-children {
+		display: flex;
+		flex-direction: column;
+	}
+	.sider-logo {
+		height: 30px;
+		background: rgba(255, 255, 255, .2);
+		margin: 15px;
+	}
+	.main-menu {
+		flex: 1;
+		overflow-y: auto;
+	}
+}
+
+.scrollbar-primary {
+	&:hover::-webkit-scrollbar-thumb {
+		// background: #d8d8d8;
+	}
+	&::-webkit-scrollbar {
+		width: 2px;
+		height: 2px;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 2px;
+		background: #d8d8d8;
+	}
+}
+
+.main-layout {
+	display: flex;
+	overflow: hidden;
+	.main-content {
+		flex: 1;
+		padding: 15px;
+		overflow-y: auto;
+	}
+}
+
+.main-header {
+	padding: 0;
+	background: #fff;
+	.main-header-left {
+		float: left;
+	}
+	.main-header-right {
+		float: right;
+		margin-right: 20px;
+	}
+	.login-user {
+		i {
+			margin: 0 5px;
+		}
+	}
+	.header-trigger {
+		font-size: 18px;
+		line-height: 64px;
+		padding: 0 24px;
+		cursor: pointer;
+		transition: color .3s;
+	}
+
+	.header-trigger:hover {
+		color: $theme-color;
+	}
+}
+
+.scrollbar {
+	margin-right: 2px;
+	&:hover::-webkit-scrollbar-thumb {
+		background: #d8d8d8;
+	}
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 8px;
+		background: transparent;
+	}
+}

@@ -1,4 +1,8 @@
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 const path = require('path');
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -37,7 +41,7 @@ var devConfig = {
 	filenameHashing: false,
   devServer: {
     host: '0.0.0.0',
-    port: 8086
+    port: 8092
   }
 };
 
@@ -46,6 +50,6 @@ var prodConfig = {
   productionSourceMap: false,
 };
 
-var config = process.env.NODE_ENV === 'production' ? Object.assign(baseConfig, prodConfig) : Object.assign(baseConfig, devConfig);
+var config = !isDev ? Object.assign(baseConfig, prodConfig) : Object.assign(baseConfig, devConfig);
 
 module.exports = config;
