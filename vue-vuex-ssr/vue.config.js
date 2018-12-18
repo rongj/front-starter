@@ -1,22 +1,37 @@
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
-const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
-const path = require('path');
-
 const isDev = process.env.NODE_ENV !== 'production';
+const isServer = process.env.WEBPACK_ENV === 'node';
 
-function resolve (dir) {
-  return path.join(__dirname, dir)
-}
+const clientConfig = require('./vue.client.config');
+const serverConfig = require('./vue.server.config');
 
 var baseConfig = {
+  configureWebpack: isServer ? serverConfig : clientConfig,
+  // configureWebpack: () => ({
+  //   optimization: {
+  //     splitChunks: {
+  //       chunks: "async",
+  //       minSize: 30000,
+  //       minChunks: 2,
+  //       maxAsyncRequests: 5,
+  //       maxInitialRequests: 3
+  //     }
+  //   },
+  // }),
   chainWebpack: config => {
     config.module
       .rule('images')
-        .use('url-loader')
-          .loader('url-loader')
-          .tap(options => Object.assign(options, { limit: 10240 }))
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { limit: 10240 }));
+    config.module
+      .rule("vue")
+      .use("vue-loader")
+      .tap(options => {
+        Object.assign(options, {
+          optimizeSSR: false
+        });
+      });
   },
-
   css: {
     loaderOptions: {
       less: {
@@ -34,11 +49,11 @@ var baseConfig = {
     }
   }
 };
-  
+
 
 var devConfig = {
   baseUrl: '/',
-	filenameHashing: false,
+  filenameHashing: false,
   devServer: {
     host: '0.0.0.0',
     port: 8092

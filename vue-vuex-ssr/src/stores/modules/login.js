@@ -1,9 +1,8 @@
 import api from '@/services/api';
 import { message } from 'ant-design-vue';
-
 import { getQueryString } from '@/utils/global';
-import { createApp } from '@/main';
-const { router } = createApp();
+import { createRouter } from '@/router';
+const router = createRouter();
 
 export default {
   namespaced: true,
