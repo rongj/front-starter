@@ -1,55 +1,68 @@
 <template>
-  <div>
-    <nuxt/>
-  </div>
+  <el-container>
+    <el-header>
+      <el-menu
+        :default-active="$route.path"
+        :router="true"
+        class="main-menu"
+        mode="horizontal">
+        <el-menu-item index="/">index</el-menu-item>
+        <el-menu-item index="/list">list</el-menu-item>
+        <el-menu-item index="/about">about</el-menu-item>
+      </el-menu>
+      <div class="header-login">
+        <div v-if="loggedUser">
+          welcome, {{ loggedUser && loggedUser.username }}!
+          <el-button @click="handleLogout" style="margin-left: 10px;">logout</el-button>
+        </div>
+        <div v-else>
+          <nuxt-link to="/login">
+            <el-button>login</el-button>
+          </nuxt-link>
+        </div>
+      </div>
+    </el-header>
+    <el-main>
+      <nuxt/>
+    </el-main>
+  </el-container>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+  import { mapState, mapGetters, mapActions } from 'vuex';
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+  export default {
+    computed: {
+      ...mapState('global', [
+        'user'
+      ]),
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+      ...mapGetters('global', [
+        'loggedUser'
+      ]),
+    },
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+    methods: {
+      ...mapActions('global', [
+        'handleLogout'
+      ]),
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+    }
+  }  
+</script>
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+<style lang="scss">
+  @import '@/assets/styles/_theme.scss';
+  .main-menu {
+    position: relative;
+  }
+        
+  .header-login {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    line-height: 60px;
+    font-size: 14px;
+    color: $theme-color;
+  }
 </style>

@@ -1,66 +1,64 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        vue-nuxt
-      </h1>
-      <h2 class="subtitle">
-        My sweet Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div>
+    <h2>index page</h2>
+    <el-button @click="decreament">-</el-button>
+    <el-input v-model="count" style="width: 100px;"/>
+    <el-button @click="increament">+</el-button>
+    <el-table
+      :data="userlist"
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="name">
+      </el-table-column>
+      <el-table-column
+        prop="username"
+        label="username">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="address">
+        <template slot-scope="scope">{{ scope.row.address.city + ', ' + scope.row.address.street }}</template>
+      </el-table-column>
+      <el-table-column
+        prop="phone"
+        label="phone">
+      </el-table-column>
+      <el-table-column
+        prop="website"
+        label="website">
+      </el-table-column>
+      <el-table-column
+        prop="company"
+        label="company">
+        <template slot-scope="scope">{{ scope.row.company.name }}</template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+  import { mapState, mapActions } from 'vuex';
 
-export default {
-  components: {
-    Logo
+  export default {
+    head: {
+      title: 'index page'
+    },
+
+    async asyncData ({ params, $axios }) {
+      let { data } = await $axios.get(`https://jsonplaceholder.typicode.com/users`)
+      return { userlist: data }
+    },
+
+    computed: mapState('home', [
+      'count'
+    ]),
+
+    methods: {
+      ...mapActions('home', [
+        'increament',
+        'decreament'
+      ])
+    }
   }
-}
 </script>
-
-<style>
-
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
