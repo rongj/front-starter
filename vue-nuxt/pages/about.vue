@@ -6,11 +6,11 @@
 </template>
 
 <script>
-  export default {
-  	middleware: 'authenticated',
+export default {
+  middleware: "authenticated",
 
-    head: {
-      title: 'about page'
-    }
+  head: {
+    title: "about page"
   }
+};
 </script>

@@ -1,9 +1,14 @@
 import * as types from '../action-types';
 
 export const logout = () => {
-    console.log(11321);
-    
-    return {
-        type: types.LOGOUT
-    }
+  return {
+    type: types.LOGOUT
+  }
+}
+
+export const updateUser = data => {
+  return {
+    type: types.UPDATE_USER,
+    payload: data
+  }
 }

@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 export const asyncComponent = (loadComponent, requireAuth) => (
 	class extends Component {
 		state = {
-			Component: null,
+			Component: null
 		}
 
 		componentWillMount() {
@@ -28,7 +28,7 @@ export const asyncComponent = (loadComponent, requireAuth) => (
 					}
 				})
 				.catch((err) => {
-					console.error(`Cannot load component in <AsyncComponent />`);
+					console.error('Cannot load component in <AsyncComponent />');
 					throw err;
 				});
 

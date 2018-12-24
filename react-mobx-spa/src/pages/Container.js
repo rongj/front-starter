@@ -23,7 +23,7 @@ export default class Container extends Component {
 
 	logout = () => {
 		let { history, location, appStore } = this.props;
-		history.push({ pathname: '/login', search: 'redirect='+location.pathname })
+		history.push({ pathname: '/login', search: 'redirect=' + location.pathname })
 		appStore.logout()
 	}
 
@@ -36,26 +36,22 @@ export default class Container extends Component {
 		let { collapsed, user } = appStore;
 
 		// 单独视图
-		if(singleLayout && singleLayout.indexOf(location.pathname) > -1) {
+		if (singleLayout && singleLayout.indexOf(location.pathname) > -1) {
 			return <div>{children}</div>
 		}
 
 		return (
 			<Layout className="main-wrapper">
-				<Sider
-					className="main-sider"
-					trigger={null}
-					collapsible
-					collapsed={collapsed}
-				>
+				<Sider className="main-sider" collapsed={collapsed}
+collapsible trigger={null}>
 					<div className="sider-logo" />
 					<div className="main-menu scrollbar-primary">
 						<Menu
-							theme="dark"
-							mode="inline"
 							defaultOpenKeys={['sub1']}
 							defaultSelectedKeys={[location.pathname]}
-							onClick={this.handleMenu}>
+							mode="inline"
+							onClick={this.handleMenu}
+							theme="dark">
 							<Menu.Item key="/">
 								<Icon type="pie-chart" />
 								<span>index</span>
@@ -90,16 +86,16 @@ export default class Container extends Component {
 						<div className="main-header-left">
 							<Icon
 								className="header-trigger"
-								type={collapsed ? 'menu-unfold' : 'menu-fold'}
 								onClick={this.toggle}
-							/>					
+								type={collapsed ? 'menu-unfold' : 'menu-fold'}
+								/>
 						</div>
 						<div className="main-header-right">
 							<Dropdown overlay={
-									<Menu>
-										<Menu.Item onClick={this.logout}>退出</Menu.Item>
-									</Menu>
-								}>
+								<Menu>
+									<Menu.Item onClick={this.logout}>退出</Menu.Item>
+								</Menu>
+							}>
 								<a className="login-user"><Icon type="user" />{user.username}</a>
 							</Dropdown>
 						</div>

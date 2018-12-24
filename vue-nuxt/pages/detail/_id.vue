@@ -18,8 +18,8 @@
     },
 
     async asyncData ({ params, $axios }) {
-      let { data } = await $axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
-      return { post: data }
+      let { data } = await $axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+      return { post: data };
     },
   }
 </script>

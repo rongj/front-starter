@@ -26,26 +26,28 @@ export default class extends Component {
 
 		let { loginStore } = this.props;
 		let { loginForm, ableSubmit } = loginStore;
-		
+
 		return (
 			<div className="passport-panel">
 				<h3>登录</h3>
 				<Input
+					onChange={this.handleChange.bind(null, 'username')}
+					placeholder="请输入用户名"
 					size="large"
 					value={loginForm.username}
-					onChange={this.handleChange.bind(null, 'username')}
-					placeholder="请输入用户名"/>
-				<Input 
-					size="large"
-					value={loginForm.password}
+					/>
+				<Input
 					onChange={this.handleChange.bind(null, 'password')}
+					placeholder="请输入密码"
+					size="large"
 					type="password"
-					placeholder="请输入密码"/>
-				<Button 
-					onClick={this.handSubmit}
+					value={loginForm.password}
+					/>
+				<Button
 					loading={!ableSubmit}
-					type="primary"
-					size="large">登录</Button>
+					onClick={this.handSubmit}
+					size="large"
+					type="primary">登录</Button>
 			</div>
 		)
 	}

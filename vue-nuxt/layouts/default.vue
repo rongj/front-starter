@@ -1,10 +1,10 @@
 <template>
   <el-container>
     <el-header>
-      <el-menu
-        :default-active="$route.path"
-        :router="true"
-        class="main-menu"
+      <el-menu 
+        :default-active="$route.path" 
+        :router="true" 
+        class="main-menu" 
         mode="horizontal">
         <el-menu-item index="/">index</el-menu-item>
         <el-menu-item index="/list">list</el-menu-item>
@@ -13,7 +13,7 @@
       <div class="header-login">
         <div v-if="loggedUser">
           welcome, {{ loggedUser && loggedUser.username }}!
-          <el-button @click="handleLogout" style="margin-left: 10px;">logout</el-button>
+          <el-button style="margin-left: 10px;" @click="handleLogout">logout</el-button>
         </div>
         <div v-else>
           <nuxt-link to="/login">
@@ -29,40 +29,33 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from "vuex";
 
-  export default {
-    computed: {
-      ...mapState('global', [
-        'user'
-      ]),
+export default {
+  computed: {
+    ...mapState("global", ["user"]),
 
-      ...mapGetters('global', [
-        'loggedUser'
-      ]),
-    },
+    ...mapGetters("global", ["loggedUser"])
+  },
 
-    methods: {
-      ...mapActions('global', [
-        'handleLogout'
-      ]),
-
-    }
-  }  
+  methods: {
+    ...mapActions("global", ["handleLogout"])
+  }
+};
 </script>
 
 <style lang="scss">
-  @import '@/assets/styles/_theme.scss';
-  .main-menu {
-    position: relative;
-  }
-        
-  .header-login {
-    position: absolute;
-    right: 20px;
-    top: 0;
-    line-height: 60px;
-    font-size: 14px;
-    color: $theme-color;
-  }
+@import "@/assets/styles/_theme.scss";
+.main-menu {
+  position: relative;
+}
+
+.header-login {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  line-height: 60px;
+  font-size: 14px;
+  color: $theme-color;
+}
 </style>
