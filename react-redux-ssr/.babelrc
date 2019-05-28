@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "transform-decorators-legacy",
+    "react-hot-loader/babel",
+    "loadable-components/babel",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": "css"
+      }
+    ]
+  ],
+  "presets": [
+    "react-app"
+  ]
+}
