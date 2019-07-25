@@ -3,6 +3,7 @@ const isServer = process.env.WEBPACK_ENV === 'node';
 
 const clientConfig = require('./vue.client.config');
 const serverConfig = require('./vue.server.config');
+const merge = require('webpack-merge');
 
 var baseConfig = {
   configureWebpack: isServer ? serverConfig : clientConfig,
@@ -65,6 +66,6 @@ var prodConfig = {
   productionSourceMap: false,
 };
 
-var config = !isDev ? Object.assign(baseConfig, prodConfig) : Object.assign(baseConfig, devConfig);
+var config = !isDev ? merge(baseConfig, prodConfig) : merge(baseConfig, devConfig);
 
 module.exports = config;
